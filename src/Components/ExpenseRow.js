@@ -18,6 +18,7 @@ const ExpenseRow = ({ expensesData, name, key }) => {
 
     const fieldName = event.target.getAttribute("name");
     const fieldValue = event.target.value;
+    console.log("field value", fieldValue)
 
     const newExpenseFormData = { ...addExpenseFormData };
     newExpenseFormData[fieldName] = fieldValue;
@@ -45,50 +46,52 @@ const ExpenseRow = ({ expensesData, name, key }) => {
     <React.Fragment key={key}>
       {expenses.map((expense) => {
         return (
-          <tr>
-            <td>{name}</td>
-            <td>{expense.category}</td>
-            <td>{expense.description}</td>
-            <td>{expense.cost}</td>
-          </tr>
+          <React.Fragment>
+            <tr>
+              <td>{name}</td>
+              <td>{expense.category}</td>
+              <td>{expense.description}</td>
+              <td>{expense.cost}</td>
+            </tr>
+            <form onSubmit={handleAddExpenseFormSubmit}>
+              <h2>Add an Expense</h2>
+              <label for="expenses">Choose a person:</label>
+              <select id="fullName">
+                <option value={name}>{name}</option>
+              </select>
+              <label for="category">Choose a category:</label>
+              <select
+                name="category"
+                id="category"
+                onChange={handleAddExpenseFormChange}
+              >
+                {categoryNames.map((name, i) => (
+                  <option key={i} value={name}>
+                    {name}
+                  </option>
+                ))}
+              </select>
+              <input
+                type="text"
+                name="description"
+                required
+                placeholder="Enter Description..."
+                onChange={handleAddExpenseFormChange}
+              />
+              <input
+                type="number"
+                step="0.01"
+                max="2500"
+                name="cost"
+                required
+                placeholder="Enter Cost..."
+                onChange={handleAddExpenseFormChange}
+              />
+              <button type="submit">Add</button>
+            </form>{" "}
+          </React.Fragment>
         );
       })}
-      <form onSubmit={handleAddExpenseFormSubmit}>
-        <h2>Add an Expense</h2>
-        <label for="expenses">Choose a person:</label>
-        <select id="fullName">
-          <option value={name}>{name}</option>
-        </select>
-        <label for="category">Choose a category:</label>
-        <select
-          name="expense.category"
-          id="category"
-          onChange={handleAddExpenseFormChange}
-        >
-          {categoryNames.map((name, i) => (
-            <option key={i} value={name}>
-              {name}
-            </option>
-          ))}
-        </select>
-        <input
-          type="text"
-          name="expense.description"
-          required
-          placeholder="Enter Description..."
-          onChange={handleAddExpenseFormChange}
-        />
-        <input
-          type="number"
-          step="0.01"
-          max="2500"
-          name="expense.cost"
-          required
-          placeholder="Enter Cost..."
-          onChange={handleAddExpenseFormChange}
-        />
-        <button type="submit">Add</button>
-      </form>{" "}
     </React.Fragment>
   );
 };
