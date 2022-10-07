@@ -1,70 +1,68 @@
-# Getting Started with Create React App
+# ld-app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Introduction
 
-## Available Scripts
+This is a take-home project from Lean Data. Goal is to create a single page application containing 3 tables that allow you to add/edit/delete users, add/edit/delete expenses for each user, and display a summary of expenses by expense category. You are allowed to use any frontend framework and library to complete this assignment. Using the best of my abailites, I was unsuccessful in completing every objective laid out for this project, but did find other successes in learning about tables and how the useState method can manipulate data in React.
 
-In the project directory, you can run:
+### Technologies
 
-### `npm start`
+Project was created using create-react-app to kickstart, uses front end only. Can be run locally with node on localhost:3000. Fake data was created in mock-data.json and the application itself is stored in App.js. The application uses the front-end library React JS. A simple CSS file for styiling was used, just to make the tables legible. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Required Functionalty 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+#### User Table
+- [x] Table Columns: First Name, Last Name, Total Expenses
 
-### `npm test`
+##### When adding/editing a user
+- [x] First Name and Last Name should be standard input boxes
+- [x] All fields must be filled out before being able to save the user
+- [x] Multiple users can have the same name, but each user must still be considered unique
+- [x] Total Expenses column is a read-only column when displaying or editing a user
+- [] When editing/deleting a user, data in the other 2 tables should be updated as well
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Expense Table
+- [x] Table Columns: Full Name, Category, Description, Cost
+##### When adding/editing an expense
+- [x] Full Name should be a dropdown of users from the users table
+- [] Category will be a dropdown with the following options: Food, Travel, Equipment
+- [] Description will be a standard input box
+- [] Cost will be a standard input box
+- [] All fields must be filled out before being able to save the expense
 
-### `npm run build`
+- [x] Each expense should be displayed as a separate row in the table
+- [] When editing/deleting an expense, data in the other 2 tables should be updated as well
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### Company Expenses Table
+- [x] Table Columns: Category, Total ($)
+- [x] This is a read-only table and will only display the total amount of expenses for each category
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Description
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The mock data is first saved into state, then the functions therefore maniuplate the state. For documentation on state see: [Using the State Hook - React](https://reactjs.org/docs/hooks-state.html)
 
-### `npm run eject`
+7 unique functions are used in the App component to manipulate data. 
+- `handleAddFormChange`  Adds the data from the inputs into state, using the inputs underneath. 
+- `handleEditFormChange` Allows user to change data to state only. 
+- `handleAddFormSubmit`  Adds the data entered into state into the data itself. 
+- `handleEditFormSubmit` Adds the edited data from state into the data itself.
+- `handleEditClick`  Makes sure the user only edits the selected data with id only.
+- `handleCancelClick` Allows the user to cancel, and undo the changed state.
+- `handleDeleteClick` Removes the selected data from state and then the data itself
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+`nanoid()` just returns a UUIDv4 string 
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Issues
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The main wall I faced was dealing with the expenses data. I initially tried to add the expenses data into a seperate json file, but realized that it would be difficult to tie in with the unique person that has an expense. So instead I just added an array of expenses into each person with unique id. Manipulating data with this is when I got stuck because the expenses data has different set up for the state. And some persons may have an empty array and some may not. Using state to manipulate the data deemed something out of my understanding, I tried multiple console logs with `data` but could not figure out how to capture just expenses.
+getting the data to change table 1 from editing 2 was not something I could I achieve.  
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Successes
 
-## Learn More
+I was able to successfully render data into the tables it self. Although it does not appear to work, if you comment out any code that uses the `expenses` array, and remove the `expenses` property from every piece of data, the functionalty of table 1 works. I was successfully able to Add/Edit/Delete/Save data. And the table would reflect that. Using `.map()` I was able to render both the other tables but table 2 and 3 at least. 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Note 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Thank you for taking the time to read this, this is a coding project that I never done before and my exposure to using State with lot of data is limited. The majority of my experience is more standard styling and rendering components in react, and creating CMS properties. Allowing users to manipulate data is not something I have much experience in. I have much to learn and would like to learn this subject. 
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Jack Lambert
+[My Portfolio](https://jacklmbrt07.netlify.app/)
