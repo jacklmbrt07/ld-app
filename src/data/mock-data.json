@@ -6,11 +6,9 @@
     "totalExpenses": 333.0,
     "expenses": [
       {
-        "expense": {
-          "category": "Food",
-          "description": "sushi",
-          "cost": 20.67
-        }
+        "category": "Food",
+        "description": "sushi",
+        "cost": 20.67
       }
     ]
   },
@@ -28,11 +26,9 @@
     "totalExpenses": 788.09,
     "expenses": [
       {
-        "expense": {
           "category": "Food",
           "description": "sushi",
           "cost": 20.67
-        }
       }
     ]
   },
@@ -41,9 +37,7 @@
     "firstName": "Jeremy",
     "lastName": "Clark",
     "totalExpenses": 11.96,
-    "expenses": [
-
-    ]
+    "expenses": []
   },
   {
     "id": "9801dba7-9f54-4b89-8595-ff2c25ab9570",
@@ -52,18 +46,14 @@
     "totalExpenses": 323.45,
     "expenses": [
       {
-        "expense": {
-          "category": "Food",
-          "description": "taco",
-          "cost": 2.07
-        }
+        "category": "Food",
+        "description": "taco",
+        "cost": 2.07
       },
       {
-        "expense": {
-          "category": "Travel",
-          "description": "Mexico",
-          "cost": 500.67
-        }
+        "category": "Travel",
+        "description": "Mexico",
+        "cost": 500.67
       }
     ]
   }
