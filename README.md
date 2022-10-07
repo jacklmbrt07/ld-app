@@ -68,7 +68,7 @@ I was able to render table 3 which sums up the expenses by category.
 
 ## Note 
 
-Thank you for taking the time to read this, this is a coding project that I never done before and my exposure to using State with lot of data is limited. The majority of my experience is more standard styling and rendering components in react, and creating CMS properties. Allowing users to manipulate data is not something I have much experience in. I have much to learn and would like to learn this subject, as I found this project to be challenging and am in need of a challenge. 
+Thank you for taking the time to read this, and giving me the oppurtinity. This is a coding project that I never done before and my exposure to using State with lot of data is limited. The majority of my experience is more standard styling and rendering components in react, and creating CMS properties. Allowing users to manipulate data is not something I have much experience in. I have much to learn and would like to learn this subject, as I found this project to be challenging and am in need of a challenge. 
 
 Jack Lambert
 [My Portfolio](https://jacklmbrt07.netlify.app/)
