@@ -28,19 +28,8 @@ const EditableRow = ({
           value={editFormData.lastName}
         />
       </td>
-      <td>
-        {" "}
-        <input
-          type="number"
-          step="0.01"
-          max="2500"
-          name="totalExpenses"
-          required
-          placeholder="Enter Total Expenses..."
-          onChange={handleEditFormChange}
-          value={editFormData.totalExpenses}
-        />
-      </td>
+      <td>{editFormData.totalExpenses}</td>
+
       <td>
         <button type="submit">Save</button>
         <button type="button" onClick={handleCancelClick}>

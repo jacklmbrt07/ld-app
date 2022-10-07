@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import "./App.css";
-import data from "./mock-data.json";
+import data from "./data/mock-data.json";
 import { nanoid } from "nanoid";
 import ReadOnlyRow from "./Components/ReadOnlyRow";
 import EditableRow from "./Components/EditableRow";
 
 const App = () => {
   const [contacts, setContacts] = useState(data);
+
   const [addFormData, setAddFormData] = useState({
     firstName: "",
     lastName: "",
@@ -108,6 +109,7 @@ const App = () => {
 
   return (
     <div className="app-container">
+      {/* User Table  */}
       <form onSubmit={handleEditFormSubmit}>
         <table>
           <thead>
@@ -167,8 +169,43 @@ const App = () => {
         />
         <button type="submit">Add</button>
       </form>
+
+      <br />
+
+      {/* Expense Table  */}
+      <form>
+        <table>
+          <thead>
+            <tr>
+              <th>Full Name</th>
+              <th>Category</th>
+              <th>Description</th>
+              <th>Cost</th>
+            </tr>
+          </thead>
+          <tbody>
+            {contacts.map((contact, i) => {
+              const name = `${contact.firstName} ${contact.lastName}`;
+              return (
+                <React.Fragment key={i}>
+                  {contact.expenses.map((expense, j) => {
+                    return (
+                      <tr key={j}>
+                        <td>{name}</td>
+                        <td>{expense.expense.category}</td>
+                        <td>{expense.expense.description}</td>
+                        <td>{expense.expense.cost}</td>
+                      </tr>
+                    );
+                  })}
+                </React.Fragment>
+              );
+            })}
+          </tbody>
+        </table>
+      </form>
     </div>
   );
-}
+};
 
 export default App;
