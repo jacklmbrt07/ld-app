@@ -15,7 +15,6 @@ const App = () => {
   });
 
   const [contacts, setContacts] = useState(data);
-
   const [addFormData, setAddFormData] = useState({
     firstName: "",
     lastName: "",
@@ -114,6 +113,34 @@ const App = () => {
 
     setContacts(newContacts);
   };
+
+  let categoriesTotal = {
+    food: 0,
+    travel: 0,
+    equipment: 0,
+  };
+
+  expensesData.forEach((data) => {
+    data.expenses.forEach((expense) => {
+      switch (expense.category) {
+        case "Food":
+          categoriesTotal.food = Number(
+            (categoriesTotal.food + expense.cost).toFixed(2)
+          );
+          break;
+        case "Travel":
+          categoriesTotal.travel = Number(
+            (categoriesTotal.travel + expense.cost).toFixed(2)
+          );
+          break;
+        case "Equipment":
+          categoriesTotal.equipment = Number(
+            (categoriesTotal.equipment + expense.cost).toFixed(2)
+          );
+          break;
+      }
+    });
+  });
 
   return (
     <div className="app-container">
@@ -215,7 +242,7 @@ const App = () => {
         </table>
       </form>
 
-      <h2>Add an Expense</h2>
+      {/* <h2>Add an Expense</h2>*/}
       <form>
         <label for="expenses">Choose a person:</label>
         <select name="fullName" id="fullName">
@@ -252,6 +279,33 @@ const App = () => {
           placeholder="Enter Cost..."
         />
         <button type="submit">Add</button>
+      </form>
+
+      <br />
+
+      <h2>Company Expenses</h2>
+      <form>
+        <table>
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Total ($)</th>
+            </tr>
+          </thead>
+
+          <tr>
+            <td>Food</td>
+            <td>{categoriesTotal.food}</td>
+          </tr>
+          <tr>
+            <td>Travel</td>
+            <td>{categoriesTotal.travel}</td>
+          </tr>
+          <tr>
+            <td>Equipment</td>
+            <td>{categoriesTotal.equipment}</td>
+          </tr>
+        </table>
       </form>
     </div>
   );

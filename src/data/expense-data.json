@@ -1,9 +1,60 @@
 [
   {
     "id": "bb0ba029-d6a6-4f73-8995-128c5497f4e8",
-    "fullName": "Jenny Fake",
-    "category": "Food",
-    "description": "sushi",
-    "cost": 20.67
+    "firstName": "Jenny",
+    "lastName": "Fake",
+    "totalExpenses": 333.0,
+    "expenses": [
+      {
+        "category": "Food",
+        "description": "sushi",
+        "cost": 20.67
+      }
+    ]
+  },
+  {
+    "id": "8c3f08a1-bec0-44ed-a39b-e79cf275260e",
+    "firstName": "Jessica",
+    "lastName": "Warren",
+    "totalExpenses": 11.67,
+    "expenses": []
+  },
+  {
+    "id": "f77b60d3-b262-4340-9967-77299797b803",
+    "firstName": "Tony",
+    "lastName": "Frank",
+    "totalExpenses": 788.09,
+    "expenses": [
+      {
+          "category": "Food",
+          "description": "sushi",
+          "cost": 20.67
+      }
+    ]
+  },
+  {
+    "id": "023c10f2-3b70-45f8-811c-d89f6ba436a7",
+    "firstName": "Jeremy",
+    "lastName": "Clark",
+    "totalExpenses": 11.96,
+    "expenses": []
+  },
+  {
+    "id": "9801dba7-9f54-4b89-8595-ff2c25ab9570",
+    "firstName": "Raymond",
+    "lastName": "Edwards",
+    "totalExpenses": 323.45,
+    "expenses": [
+      {
+        "category": "Food",
+        "description": "taco",
+        "cost": 2.07
+      },
+      {
+        "category": "Travel",
+        "description": "Mexico",
+        "cost": 500.67
+      }
+    ]
   }
 ]
