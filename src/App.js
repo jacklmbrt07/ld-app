@@ -5,10 +5,16 @@ import { nanoid } from "nanoid";
 import ReadOnlyRow from "./Components/ReadOnlyRow";
 import EditableRow from "./Components/EditableRow";
 
-const App = () => {
-  const [contacts, setContacts] = useState(data);
+const categoryNames = ["Food", "Travel", "Equipment"];
 
-  const categoryNames = ["Food", "Travel", "Equipment"];
+const App = () => {
+  const expensesData = [];
+
+  data.map((data) => {
+    expensesData.push({ fullName: data.firstName, expenses: data.expenses });
+  });
+
+  const [contacts, setContacts] = useState(data);
 
   const [addFormData, setAddFormData] = useState({
     firstName: "",
@@ -195,9 +201,9 @@ const App = () => {
                       <React.Fragment key={j}>
                         <tr>
                           <td>{name}</td>
-                          <td>{expense.expense.category}</td>
-                          <td>{expense.expense.description}</td>
-                          <td>{expense.expense.cost}</td>
+                          <td>{expense.category}</td>
+                          <td>{expense.description}</td>
+                          <td>{expense.cost}</td>
                         </tr>
                       </React.Fragment>
                     );
@@ -212,7 +218,7 @@ const App = () => {
       <h2>Add an Expense</h2>
       <form>
         <label for="expenses">Choose a person:</label>
-        <select name="expenses" id="expenses">
+        <select name="fullName" id="fullName">
           {contacts.map((contact, i) => {
             let name = `${contact.firstName} ${contact.lastName}`;
 
@@ -234,7 +240,7 @@ const App = () => {
         <input
           type="text"
           name="description"
-          required={false}
+          required
           placeholder="Enter Description..."
         />
         <input
@@ -245,8 +251,7 @@ const App = () => {
           required
           placeholder="Enter Cost..."
         />
-                <button type="submit">Add</button>
-
+        <button type="submit">Add</button>
       </form>
     </div>
   );
