@@ -1,54 +1,51 @@
 import React from "react";
 
-const EditableRow = ({ editFormData, handleEditFormChange, handleCancelClick }) => {
+const EditableRow = ({
+  editFormData,
+  handleEditFormChange,
+  handleCancelClick,
+}) => {
   return (
     <tr>
       <td>
         <input
           type="text"
-          name="fullName"
+          name="firstName"
           required
-          placeholder="Enter a name..."
+          placeholder="Enter First Name..."
           onChange={handleEditFormChange}
-          value={editFormData.fullName}
+          value={editFormData.firstName}
         />
       </td>
       <td>
         {" "}
         <input
           type="text"
-          name="address"
+          name="lastName"
           required
-          placeholder="Enter address..."
+          placeholder="Enter Last Name..."
           onChange={handleEditFormChange}
-          value={editFormData.address}
+          value={editFormData.lastName}
         />
       </td>
       <td>
         {" "}
         <input
-          type="text"
-          name="phoneNumber"
+          type="number"
+          step="0.01"
+          max="2500"
+          name="totalExpenses"
           required
-          placeholder="Enter phone number..."
+          placeholder="Enter Total Expenses..."
           onChange={handleEditFormChange}
-          value={editFormData.phoneNumber}
-        />
-      </td>
-      <td>
-        {" "}
-        <input
-          type="email"
-          name="email"
-          required
-          placeholder="Enter email..."
-          onChange={handleEditFormChange}
-          value={editFormData.email}
+          value={editFormData.totalExpenses}
         />
       </td>
       <td>
         <button type="submit">Save</button>
-        <button type="button" onClick={handleCancelClick}>Cancel</button>
+        <button type="button" onClick={handleCancelClick}>
+          Cancel
+        </button>
       </td>
     </tr>
   );

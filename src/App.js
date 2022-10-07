@@ -1,26 +1,22 @@
 import React, { useState } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import data from "./mock-data.json";
 import { nanoid } from "nanoid";
 import ReadOnlyRow from "./Components/ReadOnlyRow";
 import EditableRow from "./Components/EditableRow";
 
-function App() {
+const App = () => {
   const [contacts, setContacts] = useState(data);
-
   const [addFormData, setAddFormData] = useState({
-    fullName: "",
-    address: "",
-    phoneNumber: "",
-    email: "",
+    firstName: "",
+    lastName: "",
+    totalExpenses: 0,
   });
 
   const [editFormData, setEditFormData] = useState({
-    fullName: "",
-    address: "",
-    phoneNumber: "",
-    email: "",
+    firstName: "",
+    lastName: "",
+    totalExpenses: 0,
   });
 
   const [editContactId, setEditContactId] = useState(null);
@@ -32,7 +28,6 @@ function App() {
     const fieldValue = event.target.value;
 
     const newFormData = { ...addFormData };
-
     newFormData[fieldName] = fieldValue;
 
     setAddFormData(newFormData);
@@ -46,6 +41,8 @@ function App() {
 
     const newFormData = { ...editFormData };
     newFormData[fieldName] = fieldValue;
+
+    setEditFormData(newFormData);
   };
 
   const handleAddFormSubmit = (event) => {
@@ -53,10 +50,9 @@ function App() {
 
     const newContact = {
       id: nanoid(),
-      fullName: addFormData.fullName,
-      address: addFormData.address,
-      phoneNumber: addFormData.phoneNumber,
-      email: addFormData.email,
+      firstName: addFormData.firstName,
+      lastName: addFormData.lastName,
+      totalExpenses: addFormData.totalExpenses,
     };
 
     const newContacts = [...contacts, newContact];
@@ -65,13 +61,14 @@ function App() {
 
   const handleEditFormSubmit = (event) => {
     event.preventDefault();
+
     const editedContact = {
       id: editContactId,
-      fullName: editFormData.fullName,
-      address: editFormData.address,
-      phoneNumber: editFormData.phoneNumber,
-      email: editFormData.email,
+      firstName: editFormData.firstName,
+      lastName: editFormData.lastName,
+      totalExpenses: editFormData.totalExpenses,
     };
+
     const newContacts = [...contacts];
 
     const index = contacts.findIndex((contact) => contact.id === editContactId);
@@ -87,10 +84,9 @@ function App() {
     setEditContactId(contact.id);
 
     const formValues = {
-      fullName: contact.fullName,
-      address: contact.address,
-      phoneNumber: contact.phoneNumber,
-      email: contact.email,
+      firstName: contact.firstName,
+      lastName: contact.lastName,
+      totalExpenses: contact.totalExpenses,
     };
 
     setEditFormData(formValues);
@@ -116,10 +112,9 @@ function App() {
         <table>
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Address</th>
-              <th>Phone Number</th>
-              <th>Email</th>
+              <th>First</th>
+              <th>Last</th>
+              <th>Total Expenses</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -149,30 +144,25 @@ function App() {
       <form onSubmit={handleAddFormSubmit}>
         <input
           type="text"
-          name="fullName"
+          name="firstName"
           required
           placeholder="Enter a name..."
           onChange={handleAddFormChange}
         />
         <input
           type="text"
-          name="address"
+          name="lastName"
           required
-          placeholder="Enter address..."
+          placeholder="Enter lastName..."
           onChange={handleAddFormChange}
         />
         <input
-          type="text"
-          name="phoneNumber"
+          type="number"
+          step="0.01"
+          max="2500"
+          name="totalExpenses"
           required
-          placeholder="Enter phone number..."
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="email"
-          name="email"
-          required
-          placeholder="Enter email..."
+          placeholder="Enter Total Expenses..."
           onChange={handleAddFormChange}
         />
         <button type="submit">Add</button>
