@@ -8,6 +8,8 @@ import EditableRow from "./Components/EditableRow";
 const App = () => {
   const [contacts, setContacts] = useState(data);
 
+  const categoryNames = ["Food", "Travel", "Equipment"];
+
   const [addFormData, setAddFormData] = useState({
     firstName: "",
     lastName: "",
@@ -185,17 +187,19 @@ const App = () => {
           </thead>
           <tbody>
             {contacts.map((contact, i) => {
-              const name = `${contact.firstName} ${contact.lastName}`;
+              let name = `${contact.firstName} ${contact.lastName}`;
               return (
                 <React.Fragment key={i}>
                   {contact.expenses.map((expense, j) => {
                     return (
-                      <tr key={j}>
-                        <td>{name}</td>
-                        <td>{expense.expense.category}</td>
-                        <td>{expense.expense.description}</td>
-                        <td>{expense.expense.cost}</td>
-                      </tr>
+                      <React.Fragment key={j}>
+                        <tr>
+                          <td>{name}</td>
+                          <td>{expense.expense.category}</td>
+                          <td>{expense.expense.description}</td>
+                          <td>{expense.expense.cost}</td>
+                        </tr>
+                      </React.Fragment>
                     );
                   })}
                 </React.Fragment>
@@ -203,6 +207,46 @@ const App = () => {
             })}
           </tbody>
         </table>
+      </form>
+
+      <h2>Add an Expense</h2>
+      <form>
+        <label for="expenses">Choose a person:</label>
+        <select name="expenses" id="expenses">
+          {contacts.map((contact, i) => {
+            let name = `${contact.firstName} ${contact.lastName}`;
+
+            return (
+              <option key={i} value={name}>
+                {name}
+              </option>
+            );
+          })}
+        </select>
+        <label for="category">Choose a category:</label>
+        <select name="category" id="category">
+          {categoryNames.map((name, i) => (
+            <option key={i} value={name}>
+              {name}
+            </option>
+          ))}
+        </select>
+        <input
+          type="text"
+          name="description"
+          required={false}
+          placeholder="Enter Description..."
+        />
+        <input
+          type="number"
+          step="0.01"
+          max="2500"
+          name="cost"
+          required
+          placeholder="Enter Cost..."
+        />
+                <button type="submit">Add</button>
+
       </form>
     </div>
   );
