@@ -62,6 +62,10 @@ Making sure that the sum of expenses equated to the totalExpenses, although that
 
 I was able to successfully render data into the tables it self. Although it does not appear to work, if you comment out any code that uses the `expenses` array, and remove the `expenses` property from every piece of data, the functionality of table 1 works. I was successfully able to Add/Edit/Delete/Save data. And the table would reflect that. Using `.map()` I was able to render both the other tables but table 2 and 3 at least. 
 
+Using standard html `<inputs>` and `<select>` I was able to succesfully to make it required for the user to enter all pieces of information before submitting, and also uses the correct types. 
+
+I was able to render table 3 which sums up the expenses by category. 
+
 ## Note 
 
 Thank you for taking the time to read this, this is a coding project that I never done before and my exposure to using State with lot of data is limited. The majority of my experience is more standard styling and rendering components in react, and creating CMS properties. Allowing users to manipulate data is not something I have much experience in. I have much to learn and would like to learn this subject, as I found this project to be challenging and am in need of a challenge. 
