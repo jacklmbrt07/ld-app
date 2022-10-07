@@ -1,47 +1,22 @@
 import React, { useState } from "react";
 import "./App.css";
-import data from "./data/mock-data.json";
+import data from "./data/table1-data.json";
 import { nanoid } from "nanoid";
 import ReadOnlyRow from "./Components/ReadOnlyRow";
 import EditableRow from "./Components/EditableRow";
 
-const categoryNames = ["Food", "Travel", "Equipment"];
-
-const App = () => {
-  const expensesData = [];
-  console.log("console log data before", data)
-
-  data.map((data) => {
-    expensesData.push({ fullName: (`${data.firstName} ${data.lastName}`), expenses: data.expenses });
-  });
-
-  console.log("console log data after", data)
-
+const AppCopy = () => {
   const [contacts, setContacts] = useState(data);
   const [addFormData, setAddFormData] = useState({
     firstName: "",
     lastName: "",
     totalExpenses: 0,
-    expenses: [
-      {
-        category: "",
-        description: "",
-        cost: 0
-      }
-    ]
   });
 
   const [editFormData, setEditFormData] = useState({
     firstName: "",
     lastName: "",
     totalExpenses: 0,
-    expenses: [
-      {
-        category: "",
-        description: "",
-        cost: 0
-      }
-    ]
   });
 
   const [editContactId, setEditContactId] = useState(null);
@@ -131,34 +106,6 @@ const App = () => {
     setContacts(newContacts);
   };
 
-  let categoriesTotal = {
-    food: 0,
-    travel: 0,
-    equipment: 0,
-  };
-
-  expensesData.forEach((data) => {
-    data.expenses.forEach((expense) => {
-      switch (expense.category) {
-        case "Food":
-          categoriesTotal.food = Number(
-            (categoriesTotal.food + expense.cost).toFixed(2)
-          );
-          break;
-        case "Travel":
-          categoriesTotal.travel = Number(
-            (categoriesTotal.travel + expense.cost).toFixed(2)
-          );
-          break;
-        case "Equipment":
-          categoriesTotal.equipment = Number(
-            (categoriesTotal.equipment + expense.cost).toFixed(2)
-          );
-          break;
-      }
-    });
-  });
-
   return (
     <div className="app-container">
       {/* User Table  */}
@@ -223,109 +170,8 @@ const App = () => {
       </form>
 
       <br />
-
-      {/* Expense Table  */}
-      <form>
-        <table>
-          <thead>
-            <tr>
-              <th>Full Name</th>
-              <th>Category</th>
-              <th>Description</th>
-              <th>Cost</th>
-            </tr>
-          </thead>
-          <tbody>
-            {contacts.map((contact, i) => {
-              let name = `${contact.firstName} ${contact.lastName}`;
-              return (
-                <React.Fragment key={i}>
-                  {contact.expenses.map((expense, j) => {
-                    return (
-                      <React.Fragment key={j}>
-                        <tr>
-                          <td>{name}</td>
-                          <td>{expense.category}</td>
-                          <td>{expense.description}</td>
-                          <td>{expense.cost}</td>
-                        </tr>
-                      </React.Fragment>
-                    );
-                  })}
-                </React.Fragment>
-              );
-            })}
-          </tbody>
-        </table>
-      </form>
-
-      {/* <h2>Add an Expense</h2>*/}
-      <form>
-        <label for="expenses">Choose a person:</label>
-        <select name="fullName" id="fullName">
-          {contacts.map((contact, i) => {
-            let name = `${contact.firstName} ${contact.lastName}`;
-
-            return (
-              <option key={i} value={name}>
-                {name}
-              </option>
-            );
-          })}
-        </select>
-        <label for="category">Choose a category:</label>
-        <select name="category" id="category">
-          {categoryNames.map((name, i) => (
-            <option key={i} value={name}>
-              {name}
-            </option>
-          ))}
-        </select>
-        <input
-          type="text"
-          name="description"
-          required
-          placeholder="Enter Description..."
-        />
-        <input
-          type="number"
-          step="0.01"
-          max="2500"
-          name="cost"
-          required
-          placeholder="Enter Cost..."
-        />
-        <button type="submit">Add</button>
-      </form>
-
-      <br />
-
-      <h2>Company Expenses</h2>
-      <form>
-        <table>
-          <thead>
-            <tr>
-              <th>Category</th>
-              <th>Total ($)</th>
-            </tr>
-          </thead>
-
-          <tr>
-            <td>Food</td>
-            <td>{categoriesTotal.food}</td>
-          </tr>
-          <tr>
-            <td>Travel</td>
-            <td>{categoriesTotal.travel}</td>
-          </tr>
-          <tr>
-            <td>Equipment</td>
-            <td>{categoriesTotal.equipment}</td>
-          </tr>
-        </table>
-      </form>
     </div>
   );
 };
 
-export default App;
+export default AppCopy;
