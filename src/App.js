@@ -9,13 +9,15 @@ const categoryNames = ["Food", "Travel", "Equipment"];
 
 const App = () => {
   const expensesData = [];
-  console.log("console log data before", data)
 
   data.map((data) => {
-    expensesData.push({ fullName: (`${data.firstName} ${data.lastName}`), expenses: data.expenses });
+    expensesData.push({
+      fullName: `${data.firstName} ${data.lastName}`,
+      expenses: data.expenses,
+    });
   });
 
-  console.log("console log data after", data)
+  // console.log(expensesData);
 
   const [contacts, setContacts] = useState(data);
   const [addFormData, setAddFormData] = useState({
@@ -26,9 +28,9 @@ const App = () => {
       {
         category: "",
         description: "",
-        cost: 0
-      }
-    ]
+        cost: 0,
+      },
+    ],
   });
 
   const [editFormData, setEditFormData] = useState({
@@ -39,9 +41,9 @@ const App = () => {
       {
         category: "",
         description: "",
-        cost: 0
-      }
-    ]
+        cost: 0,
+      },
+    ],
   });
 
   const [editContactId, setEditContactId] = useState(null);
@@ -78,9 +80,18 @@ const App = () => {
       firstName: addFormData.firstName,
       lastName: addFormData.lastName,
       totalExpenses: addFormData.totalExpenses,
+      expenses: [addFormData.expenses]
     };
-
+    
+    const newExpense = {
+      category: addFormData.expenses.category,
+      description: addFormData.expenses.description,
+      cost: addFormData.expenses.cost,
+    };
+    
+    console.log("console log", newExpense)
     const newContacts = [...contacts, newContact];
+
     setContacts(newContacts);
   };
 
@@ -92,6 +103,7 @@ const App = () => {
       firstName: editFormData.firstName,
       lastName: editFormData.lastName,
       totalExpenses: editFormData.totalExpenses,
+      expenses: [editFormData.expenses]
     };
 
     const newContacts = [...contacts];
@@ -274,7 +286,7 @@ const App = () => {
           })}
         </select>
         <label for="category">Choose a category:</label>
-        <select name="category" id="category">
+        <select name="expenses[category]" id="category">
           {categoryNames.map((name, i) => (
             <option key={i} value={name}>
               {name}
@@ -283,7 +295,7 @@ const App = () => {
         </select>
         <input
           type="text"
-          name="description"
+          name="expenses[description]"
           required
           placeholder="Enter Description..."
         />
@@ -291,7 +303,7 @@ const App = () => {
           type="number"
           step="0.01"
           max="2500"
-          name="cost"
+          name="expenses[cost]"
           required
           placeholder="Enter Cost..."
         />
